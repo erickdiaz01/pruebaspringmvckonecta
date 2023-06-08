@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Crea nueva solicitud</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <style>
+           body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .select-entity {
+        display: flex;
+        justify-content: space-between;
+      }
+      .select-entity a {
+        width: 50%;
+        height: 50%;
+        text-align: center;
+        justify-content: center;
+      }
+      .select-entity button {
+        width: fit-content;
+        background-color: rgb(58, 122, 249);
+        color: #ffffff;
+        border-radius: 10px;
+        margin: 30px 20px;
+        height: 50px;
+        padding: 10px;
+        border: 1px transparent;
+      }
+
+      .select-entity button:hover {
+        background-color: rgb(58, 249, 166);
+        color: #ffffff;
+      }
+
+      form {
+        width: 300px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f4f4f4;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="date"] {
+        width: 100%;
+        padding: 5px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+      }
+
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 3px;
+        border: none;
+        background-color: rgb(58, 122, 249);
+        color: #fff;
+        font-weight: bold;
+      }
+      input[type="submit"]:hover {
+        background-color: rgb(58, 249, 166);
+      }
+    </style>
+    <div class="container">
+      <header class="title">
+        <h1>Aplicacion Spring MVC Konecta</h1>
+        <div class="select-entity">
+          <a type="button" href="/"><button>Home</button></a>
+          <a type="button" href="/solicitud/ver"
+            ><button>Ver solicitudes</button></a
+          >
+        </div>
+      </header>
+      <form
+        th:action="@{/solicitud/guardar}"
+        method="post"
+        th:object="${solicitudForm}"
+      >
+        <div class="form-group">
+          <label for="codigo">Codigo:</label>
+          <input
+            type="text"
+            id="codigo"
+            name="codigo"
+            th:field="*{solicitud.codigo}"
+            size="50"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <input
+            type="text"
+            id="descripcion"
+            name="descripcion"
+            th:field="*{solicitud.descripcion}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="resumen">Resumen</label>
+          <input
+            type="text"
+            id="resumen"
+            name="resumen"
+            th:field="*{solicitud.resumen}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="id_empleado">ID del empleado</label>
+          <input
+            type="number"
+            id="id_empleado"
+            name="id_empleado"
+            th:field="*{solicitud.empleado}"
+            required
+          />
+        </div>
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </body>
+</html>
